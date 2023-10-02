@@ -1,80 +1,80 @@
 export type AlignmentOptions = {
-	align?: "left" | "middle" | "right";
-	width: number;
+  align?: 'left' | 'middle' | 'right';
+  width: number;
 };
 
 export function alignTexts(texts: string[], options: AlignmentOptions) {
-	const alignedTextsLines: string[][] = [];
+  const alignedTextsLines: string[][] = [];
 
-	for (const text of texts) {
-		const lines = splitLines(text, options.width);
-		const aligned = alignLines(lines, options);
+  for (const text of texts) {
+    const lines = splitLines(text, options.width);
+    const aligned = alignLines(lines, options);
 
-		alignedTextsLines.push(aligned);
-	}
+    alignedTextsLines.push(aligned);
+  }
 
-	return alignedTextsLines;
+  return alignedTextsLines;
 }
 
 function splitLines(text: string, width: number) {
-	const lines: string[] = [];
-	let line = "";
+  const lines: string[] = [];
+  let line = '';
 
-	for (const word of text.split(" ")) {
-		if (line === "") {
-			line = word;
-		} else if (line.length + word.length < width) {
-			line += ` ${word}`;
-		} else {
-			lines.push(line);
-			line = word;
-		}
-	}
+  for (const word of text.split(' ')) {
+    if (line === '') {
+      line = word;
+    } else if (line.length + word.length < width) {
+      line += ` ${word}`;
+    } else {
+      lines.push(line);
+      line = word;
+    }
+  }
 
-	lines.push(line);
+  lines.push(line);
 
-	return lines;
+  return lines;
 }
 
 function alignLines(
-	lines: string[],
-	{ align = "left", width }: AlignmentOptions
+  lines: string[],
+  { align = 'left', width }: AlignmentOptions
 ) {
-	const aligned: string[] = [];
+  const aligned: string[] = [];
 
-	for (const line of lines) {
-		const remainingSpaces = width - line.length;
-		let newLine = line;
+  for (const line of lines) {
+    const remainingSpaces = width - line.length;
+    let newLine = line;
 
-		if (remainingSpaces) {
-			switch (align) {
-				case "left":
-					for (let i = 0; i < remainingSpaces; i += 1) {
-						newLine += " ";
-					}
-					break;
+    if (remainingSpaces) {
+      switch (align) {
+        case 'left':
+          for (let i = 0; i < remainingSpaces; i += 1) {
+            newLine += ' ';
+          }
+          break;
 
-				case "middle":
-					for (let i = 0; i < Math.ceil(remainingSpaces / 2); i += 1) {
-						newLine += " ";
-					}
+        case 'middle':
+          for (let i = 0; i < Math.ceil(remainingSpaces / 2); i += 1) {
+            newLine += ' ';
+          }
 
-					for (let i = 0; i < Math.floor(remainingSpaces / 2); i += 1) {
-						newLine = " " + newLine;
-					}
+          for (let i = 0; i < Math.floor(remainingSpaces / 2); i += 1) {
+            newLine = ' ' + newLine;
+          }
 
-					break;
+          break;
 
-				case "right":
-					for (let i = 0; i < remainingSpaces; i += 1) {
-						newLine = " " + newLine;
-					}
-					break;
-			}
-		}
+        case 'right':
+          for (let i = 0; i < remainingSpaces; i += 1) {
+            newLine = ' ' + newLine;
+          }
+          break;
+      }
+    }
 
-		aligned.push(newLine);
-	}
+    aligned.push(newLine);
+  }
 
-	return aligned;
+  return aligned;
 }
