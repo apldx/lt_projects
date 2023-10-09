@@ -1,43 +1,43 @@
-import { describe, expect, it, test } from "@jest/globals";
+import { describe, expect, it, test } from '@jest/globals';
 
-import * as index from "./index";
-import * as solution from "./index.solution";
+import * as index from './index';
+import * as solution from './index.solution';
 
 const { getEverything } = process.env.TEST_SOLUTIONS ? solution : index;
 
 describe(getEverything, () => {
-	it("returns nothing with no settings", () => {
-		expect(getEverything()).toMatchInlineSnapshot(`[]`);
-	});
+  it('returns nothing with no settings', () => {
+    expect(getEverything()).toMatchInlineSnapshot(`[]`);
+  });
 
-	it("returns everything with all settings", () => {
-		expect(
-			getEverything({
-				fauna: {
-					mammals: {
-						cute: true,
-						deadly: true,
-					},
+  it('returns everything with all settings', () => {
+    expect(
+      getEverything({
+        fauna: {
+          mammals: {
+            cute: true,
+            deadly: true
+          },
 
-					reptiles: {
-						ferocious: true,
-						small: true,
-					},
-				},
+          reptiles: {
+            ferocious: true,
+            small: true
+          }
+        },
 
-				flora: {
-					flowers: {
-						colorful: true,
-						prickly: true,
-					},
+        flora: {
+          flowers: {
+            colorful: true,
+            prickly: true
+          },
 
-					trees: {
-						evergreen: true,
-						fruitBearing: true,
-					},
-				},
-			})
-		).toMatchInlineSnapshot(`
+          trees: {
+            evergreen: true,
+            fruitBearing: true
+          }
+        }
+      })
+    ).toMatchInlineSnapshot(`
 		[
 		  "cats",
 		  "dogs",
@@ -56,5 +56,5 @@ describe(getEverything, () => {
 		  "pear",
 		]
 	`);
-	});
+  });
 });
