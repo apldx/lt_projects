@@ -1,4 +1,11 @@
 {
-	// Write your configuration options here! ✨
-	"include": ["."]
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "allowJs": true,
+    "esModuleInterop": true
+  },
+	"include": ["."],
+  "exclude": ["*.verify.ts"]
 }
